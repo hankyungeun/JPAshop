@@ -1,10 +1,20 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
 <head>
     <title>Hello</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p th:text="'안녕하세요. ' + ${member}" >안녕하세요. 손님</p>
+<div class="container">
+
+    <div class="jumbotron">
+        <h1>로그인 성공</h1>
+    </div>
+    <div style="padding-top: 10px">
+        <button id="submit-button" type="button" class="btn btn-primary"
+                onclick="location.href='http://localhost:8080/'"> 홈으로 </button>
+    </div>
+</div> <!-- /container -->
 </body>
 </html>

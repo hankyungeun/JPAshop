@@ -37,10 +37,11 @@ public class OrderController {
 
 	@PostMapping("/order")
 	public String order(@RequestParam("memberId") Long memberId,
-						@RequestParam("itemId") Long itemId,
-						@RequestParam("count") int count){
-		Long orderId = orderService.order(memberId, itemId, count);
-		return "redirect:/orders/" + orderId;
+		@RequestParam("itemId") Long itemId,
+		@RequestParam("count") int count) {
+
+		orderService.order(memberId, itemId, count);
+		return "redirect:/";
 	}
 
 	@GetMapping("/orders")
