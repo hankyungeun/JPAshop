@@ -11,25 +11,67 @@
 <div class="container">
   <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
-  <form role="form" action="/login" th:object="${loginForm}" method="post">
-
-<!--    <div th:if="${#fields.hasGlobalErrors()}">-->
-<!--      <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>-->
-<!--    </div>-->
+  <form role="form" action="/login" th:action th:object="${loginForm}" method="post">
+    <div th:if="${#fields.hasGlobalErrors()}">
+      <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
+    </div>
 
     <div class="form-group">
       <label th:for="name">이름</label>
-      <input type="text" th:field="*{name}" class="form-control">
+      <input type="text" th:field="*{name}" class="form-control" id="name"
+      th:errorclass="field-error">
+      <div class="field-error" th:errors="*{name}" />
     </div>
+
     <div>
       <label th:for="passwd">비밀번호</label>
-      <input type="passwd" th:field="*{passwd}" class="form-control">
+      <input type="password" th:field="*{passwd}" class="form-control" id="passwd"
+      th:errorclass="field-error">
+      <div class="field-error" th:errors="*{passwd}" />
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div style="padding-top: 10px">
+      <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
+    </div>
   </form>
   <br/>
   <div th:replace="fragments/footer :: footer" />
-
 </div>
 </body>
+<!--<script type="text/javascript">-->
+<!--  document.getElementById('submit-button').onclick = function () {-->
+<!--    const form = {-->
+<!--      name: document.querySelector("#name"),-->
+<!--      passwd: document.querySelector("#passwd"),-->
+<!--      submit: document.querySelector("#submit-button"),-->
+<!--      messages: document.getElementById("form-messages"),-->
+<!--    };-->
+<!--    fetch("/login", {-->
+<!--      method: "POST",-->
+<!--      headers: {-->
+<!--        Accept: "application/json, text/plain, */*",-->
+<!--        "Content-Type": "application/json",-->
+<!--      },-->
+<!--      body: JSON.stringify({-->
+<!--        name: form.name.value,-->
+<!--        passwd: form.passwd.value,-->
+<!--      }),-->
+<!--    })-->
+<!--    .then((response) => response.json())-->
+<!--    .then((data) => {-->
+<!--      console.log(data);-->
+<!--      // code here //-->
+<!--      if (data.error) {-->
+<!--        alert("Error Password or Username"); /*displays error message*/-->
+<!--      } else {-->
+<!--        window.open(-->
+<!--            "hello.html"-->
+<!--        ); /*opens the target page while Id & password matches*/-->
+<!--      }-->
+<!--    })-->
+<!--    .catch((err) => {-->
+<!--      console.log(err);-->
+<!--    });-->
+<!--  }-->
+<!--</script>-->
+
 </html>

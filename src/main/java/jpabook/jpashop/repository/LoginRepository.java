@@ -8,6 +8,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface LoginRepository extends JpaRepository<Member, String>, JpaSpecificationExecutor<Member> {
 	Optional<Member> findByName(String name);
 
-	boolean existsByName(String name);
 
 }

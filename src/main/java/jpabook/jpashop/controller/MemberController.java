@@ -1,7 +1,9 @@
 package jpabook.jpashop.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.repository.LoginRepository;
 import jpabook.jpashop.repository.MemberRepository;
 import jpabook.jpashop.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +26,7 @@ public class MemberController {
 	private final MemberService memberService;
 
 	@GetMapping("/members/new")
-	public String createForm(Model model) {
+	public String createForm(Model model, HttpServletRequest request) {
 		model.addAttribute("memberForm", new MemberForm());
 		return "members/createMemberForm";
 	}
@@ -52,16 +54,6 @@ public class MemberController {
 		model.addAttribute("members", members);
 		return "members/memberList";
 	}
-	@RequiredArgsConstructor
-	@RestController
-	@RequestMapping("/member")
-	public class UserController {
-		private final MemberRepository memberRepository;
 
-		@GetMapping
-		public List<Member> findAllMember() {
-			return memberRepository.findAll();
-		}
-	}
 
 }
