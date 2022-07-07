@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<style>
+  .fieldError {
+    border-color: #f61026;
+  }
+</style>
+<body>
+
+<div class="container">
+  <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
+  <form role="form" action="/login" th:object="${loginForm}" method="post">
+
+<!--    <div th:if="${#fields.hasGlobalErrors()}">-->
+<!--      <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>-->
+<!--    </div>-->
+
+    <div class="form-group">
+      <label th:for="name">이름</label>
+      <input type="text" th:field="*{name}" class="form-control">
+    </div>
+    <div>
+      <label th:for="passwd">비밀번호</label>
+      <input type="passwd" th:field="*{passwd}" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <br/>
+  <div th:replace="fragments/footer :: footer" />
+
+</div>
+</body>
+</html>
