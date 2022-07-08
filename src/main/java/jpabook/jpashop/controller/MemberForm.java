@@ -9,7 +9,7 @@ public class MemberForm {
 	@NotBlank(message = "회원 이름은 필수 입니다")
 	private String name;
 
-//	@NotBlank(message = "비밀번호는 필수 입니다")
+	@NotBlank(message = "비밀번호는 필수 입니다")
 	private String passwd;
 
 	private String city;

@@ -19,6 +19,6 @@ public class SimpleController {
 
 		Member member = (Member) session.getAttribute(SessionConstants.LOGIN_MEMBER);
 		//System.out.println(member);
-		return member.getName();
+		return member.getName();			//이름 불러오기
 	}
 }

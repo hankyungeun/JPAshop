@@ -1,4 +1,6 @@
 package jpabook.jpashop.controller;
+import java.util.ArrayList;
+import java.util.List;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.service.LoginService;
 import jpabook.jpashop.exception.SessionConstants;
@@ -51,5 +53,11 @@ public class LoginController {
         session.setAttribute(SessionConstants.LOGIN_MEMBER, loginMember); // 세션에 로그인 회원 정보 보관
 
         return "/hello";
+    }
+    @GetMapping("/logout")      //세션날림
+    public String logout(HttpServletRequest request) {
+        request.getSession().removeAttribute(SessionConstants.LOGIN_MEMBER);
+
+        return "redirect:/";
     }
 }

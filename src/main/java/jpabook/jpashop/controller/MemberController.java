@@ -1,10 +1,11 @@
 package jpabook.jpashop.controller;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.repository.LoginRepository;
-import jpabook.jpashop.repository.MemberRepository;
+import jpabook.jpashop.exception.SessionConstants;
 import jpabook.jpashop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,11 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.validation.Valid;
-import java.util.List;
-import org.springframework.web.bind.annotation.RestController;
 
 
 @Controller
@@ -26,8 +22,10 @@ public class MemberController {
 	private final MemberService memberService;
 
 	@GetMapping("/members/new")
-	public String createForm(Model model, HttpServletRequest request) {
+	public String createForm(Model model) {
+
 		model.addAttribute("memberForm", new MemberForm());
+
 		return "members/createMemberForm";
 	}
 
@@ -35,7 +33,7 @@ public class MemberController {
 	public String create(@Valid MemberForm form, BindingResult result) {
 
 		if (result.hasErrors()) {
-			return "members/createMemberForm";
+			return "members/createMemberForm"; //유효성 검사
 		}
 
 		Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());

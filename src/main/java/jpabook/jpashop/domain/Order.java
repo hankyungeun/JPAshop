@@ -22,7 +22,7 @@ import static javax.persistence.FetchType.*;
 public class Order {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue			//기본키생성
 	@Column(name = "order_id")
 	private Long id;
 
